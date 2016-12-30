@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>page reader</title>
+  <style>
+    .container p.info {
+      white-space: pre;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 400px;
+      padding: 10px;
+    }
+    
+    .btn-all-width {
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    .container {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  </style>
+  <link rel="stylesheet" href="bootstrap.min.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <p class="info bg-primary">Click <b> READ </b> button to read and send page data.</p>
+    <p class="bg-warning">Recording Will only work on reviews page [experimental].</p>
+    <br />
+    <button class="btn btn-primary btn-all-width" id="btnRead" type="button">READ</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
