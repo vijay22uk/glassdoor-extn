@@ -4,9 +4,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Chrome Ext. Server</title>
-    <link  href="/bootstrap.min.css" rel='stylesheet'></link>
+    <link href="/bootstrap.min.css" rel='stylesheet'></link>
     <script src="/jquery.js"></script>
     <script src="/bootstrap.min.js"></script>
+    <script src="/jqcloud.min.js"></script>
+    <link rel="stylesheet" href="jqcloud.min.css">
     <script src="/app.js"></script>
     <style>
         #logs {
@@ -17,18 +19,43 @@
             color: #84e484;
             margin-top: 10px;
         }
-        .bold{
+        
+        .bold {
             color: white;
+        }
+        
+        .panel-row {
+            border: 2px solid black;
         }
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
-    <h1>TOP 5 Logs</h1>
-    <div id="logs">
-        
-    </div>
+        <div class="col-md-6 panel-row">
+            <select class="form-control selectme" id="company1"></select>
+            <div class="container">
+                <label>Start Date</label>
+                <input type="date" id="startdate1" />
+                <label>End Date</label>
+                <input type="date" id="enddate1" />
+                <button class="btn btn-primary loadbtn" type="button" data-on="1">Load</button>
+                <div class="container-fluid reviews-pro"></div>
+            <div class="container-fluid reviews-con"></div>
+            </div>
+        </div>
+        <div class="col-md-6 panel-row">
+            <select class="form-control selectme" id="company2"></select>
+            <div class="container">
+                <label>Start Date</label>
+                <input type="date" id="startdate2" />
+                <label>End Date</label>
+                <input type="date" id="enddate2" />
+                <button class="btn btn-primary loadbtn" data-on="2" type="button">Load</button>
+            </div>
+            <div class="container-fluid reviews-pro"></div>
+            <div class="container-fluid reviews-con"></div>
+        </div>
     </div>
 
 </body>
