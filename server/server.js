@@ -4,6 +4,7 @@
     var port = process.env.PORT || 8080;
     var express = require('express');
     var fs = require("fs");
+var keyword_extractor = require("keyword-extractor");
     var bodyParser = require("body-parser");
     var options = {
         key: fs.readFileSync('./server/cert/cert.private.pem'),
@@ -43,11 +44,56 @@
                 if (err) {
                     res.status(500).send("error");
                 } else {
-                    res.status(200).send(reviews);
-                }
-            })
+                    var strpro = "";
+                    var strons = "";
+                    for(var i=0;i<Math.min(reviews.length,10);i++){
+                       strpro =  strpro + " " +reviews[i].pros;
+                        strons =  strons + " " +reviews[i].cons;
+                    }
+                    var extraction_resultPro = keyword_extractor.extract(strpro,{
+                                                                language:"english",
+                                                                remove_digits: true,
+                                                                return_changed_case:true,
+                                                                remove_duplicates: true
+                                                           });
+                var extraction_resultCon = keyword_extractor.extract(strons,{
+                                                                language:"english",
+                                                                remove_digits: true,
+                                                                return_changed_case:true,
+                                                                remove_duplicates: true
+                                                           });
 
-        });
+                                                           res.status(200).send({ pros:extraction_resultPro, cons:extraction_resultCon });
+                }
+            });
+
+        })
+
+//                                                            var Canvas = require("canvas");
+
+// var cloud = require("d3-cloud");
+
+// var words = extraction_resultPro
+//     .map(function(d) {
+//       return {text: d, size: 10 + Math.random() * 90};
+//     });
+
+// cloud().size([960, 500])
+//     .canvas(function() { return new Canvas(1, 1); })
+//     .words(words)
+//     .padding(5)
+//     .rotate(function() { return ~~(Math.random() * 2) * 90; })
+//     .font("Impact")
+//     .fontSize(function(d) { return d.size; })
+//     .on("end", end)
+//     .start();
+
+// function end(words) { console.log(JSON.stringify(words)); } 
+//                     res.status(200).send(words);
+//                 }
+//             })
+
+
     app.post('/extension', function (req, res) {
         //inMemoryData.length > 5 && inMemoryData.shift();
         //inMemoryData.push(req.body);

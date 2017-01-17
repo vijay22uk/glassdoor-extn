@@ -7,8 +7,8 @@
     <link href="/bootstrap.min.css" rel='stylesheet'></link>
     <script src="/jquery.js"></script>
     <script src="/bootstrap.min.js"></script>
-    <script src="/jqcloud.min.js"></script>
-    <link rel="stylesheet" href="jqcloud.min.css">
+    <script src="/d3.min.js"></script>
+    <script src="/d3.layout.cloud.js"></script>
     <script src="/app.js"></script>
     <style>
         #logs {
@@ -27,6 +27,13 @@
         .panel-row {
             border: 2px solid black;
         }
+        .reviews-pro{
+                margin-top: 40px;
+        }
+        .reviews-cons{
+                margin-top: 40px;
+        }
+
     </style>
 </head>
 
@@ -35,26 +42,31 @@
         <div class="col-md-6 panel-row">
             <select class="form-control selectme" id="company1"></select>
             <div class="container">
-                <label>Start Date</label>
+                <!--<label>Start Date</label>
                 <input type="date" id="startdate1" />
                 <label>End Date</label>
-                <input type="date" id="enddate1" />
+                <input type="date" id="enddate1" />-->
+                
                 <button class="btn btn-primary loadbtn" type="button" data-on="1">Load</button>
-                <div class="container-fluid reviews-pro"></div>
-            <div class="container-fluid reviews-con"></div>
+                 <p>Pros </p>
+                <div class="container-fluid reviews-pro" id="onec"></div>
+                <p>Cons </p>
+            <div class="container-fluid reviews-con" id="onep"></div>
             </div>
         </div>
         <div class="col-md-6 panel-row">
             <select class="form-control selectme" id="company2"></select>
             <div class="container">
-                <label>Start Date</label>
+                <!--<label>Start Date</label>
                 <input type="date" id="startdate2" />
                 <label>End Date</label>
-                <input type="date" id="enddate2" />
+                <input type="date" id="enddate2" />-->
                 <button class="btn btn-primary loadbtn" data-on="2" type="button">Load</button>
             </div>
-            <div class="container-fluid reviews-pro"></div>
-            <div class="container-fluid reviews-con"></div>
+            <p>Pros </p>
+               <div class="container-fluid reviews-pro" id="onec1"></div>
+            <p>Cons </p>
+            <div class="container-fluid reviews-con" id="onep2"></div>
         </div>
     </div>
 
