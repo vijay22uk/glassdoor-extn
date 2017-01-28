@@ -24,49 +24,112 @@
             color: white;
         }
         
+        .first {
+            border-right: 2px solid cornflowerblue;
+        }
+        
         .panel-row {
-            border: 2px solid black;
+            margin-top: 10px;
+            padding: 10px;
         }
-        .reviews-pro{
-                margin-top: 40px;
+        
+        .reviews-pro {
+            margin-top: 40px;
+            text-align: center;
         }
-        .reviews-cons{
-                margin-top: 40px;
+        
+        .reviews-con {
+            margin-top: 40px;
+            text-align: center;
         }
-
+        
+        .selectme,
+        .loadbtn {
+            margin-bottom: 10px;
+        }
+        
+        .bolder {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .star-ratings-css {
+  unicode-bidi: bidi-override;
+  color: #c5c5c5;
+  font-size: 25px;
+  height: 25px;
+  width: 100px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0;
+  text-shadow: 0px 1px 0 #a2a2a2;
+}
+.star-ratings-css-top {
+  color: #09ca57;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.star-ratings-css-bottom {
+  padding: 0;
+  display: block;
+  z-index: 0;
+}
+.rating-here{
+    margin-bottom: 10px;
+}
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
-        <div class="col-md-6 panel-row">
+        <p class="alert alert-success alert-close">Compare reviews of companies including PROs and CONs</p>
+        <div class="col-md-6 panel-row first">
             <select class="form-control selectme" id="company1"></select>
-            <div class="container">
+            <div class="">
                 <!--<label>Start Date</label>
                 <input type="date" id="startdate1" />
                 <label>End Date</label>
                 <input type="date" id="enddate1" />-->
-                
                 <button class="btn btn-primary loadbtn" type="button" data-on="1">Load</button>
-                 <p>Pros </p>
-                <div class="container-fluid reviews-pro" id="onec"></div>
-                <p>Cons </p>
-            <div class="container-fluid reviews-con" id="onep"></div>
+                <div class="container-fluid rating-here">
+                    <div class="star-ratings-css hidden">
+                        <div class="star-ratings-css-top" style="width: 84%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    </div>
+                </div>
+                <div class="cloud hidden">
+                    <p class="bg-primary text-center bolder">Pros </p>
+                    <div class="container-fluid reviews-pro" id="onec"></div>
+                    <p class="bg-danger text-center bolder">Cons </p>
+                    <div class="container-fluid reviews-con" id="onep"></div>
+                </div>
             </div>
         </div>
         <div class="col-md-6 panel-row">
             <select class="form-control selectme" id="company2"></select>
-            <div class="container">
+            <div class="">
                 <!--<label>Start Date</label>
                 <input type="date" id="startdate2" />
                 <label>End Date</label>
                 <input type="date" id="enddate2" />-->
                 <button class="btn btn-primary loadbtn" data-on="2" type="button">Load</button>
+                <div class="container-fluid rating-here">
+                    <div class="star-ratings-css hidden">
+                        <div class="star-ratings-css-top" style="width: 84%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    </div>
+                </div>
+                <div class="cloud hidden">
+                    <p class="bg-primary text-center bolder"> Pros </p>
+                    <div class="container-fluid reviews-pro" id="onec1"></div>
+                    <p class="bg-danger text-center bolder">Cons </p>
+                    <div class="container-fluid reviews-con " id="onep2"></div>
+                </div>
             </div>
-            <p>Pros </p>
-               <div class="container-fluid reviews-pro" id="onec1"></div>
-            <p>Cons </p>
-            <div class="container-fluid reviews-con" id="onep2"></div>
         </div>
     </div>
 

@@ -19,15 +19,17 @@
         if (productContainer && productContainer.length > 0) {
             var arr = [];
             var companyName = "None";
+            var currentRating = "0";
             for (var i = 0; i < productContainer.length; i++) {
                 var review = parseRview(productContainer[i]);
                 companyName = review.companyName;
+                currentRating = review.currentRating;
                 arr.push(review);
             }
             var xhr = new XMLHttpRequest();
             xhr.open("POST", api);
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.send(JSON.stringify({ data: arr, companyName: companyName, readType: "Reviews", origin: url }));
+            xhr.send(JSON.stringify({ data: arr, companyName: companyName,currentRating: currentRating, readType: "Reviews", origin: url }));
             console.log(arr);
         }
         callback({ done: true });
@@ -56,6 +58,8 @@
         var cons = $ele.find(".description p.cons").text();
         // adviceMgmt 
         var adviceMgmt = $ele.find(".description p.adviceMgmt").text();
+        var currentRating = $(".ratingNum").text()
+
         return {
             companyName: companyName,
             reviewId: reviewId,
@@ -66,7 +70,8 @@
             recommends: recommends,
             pros: pros,
             cons: cons,
-            adviceMgmt: adviceMgmt
+            adviceMgmt: adviceMgmt,
+            currentRating : currentRating
         }
 
     }
