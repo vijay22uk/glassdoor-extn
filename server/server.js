@@ -12,7 +12,8 @@
     };
     var text = fs.readFileSync("./server/wordstokeep.txt", "utf-8");
     var toIncludeWord = text.split("\r\n");
-    //console.log(toIncludeWord.indexOf("digital"))
+console.log(JSON.stringify(toIncludeWord));
+    console.log(toIncludeWord.indexOf("digital"))
     var app = express();
     // init HTTP server
     var http;
