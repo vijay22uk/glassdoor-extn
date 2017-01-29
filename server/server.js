@@ -15,7 +15,16 @@
     //console.log(toIncludeWord.indexOf("digital"))
     var app = express();
     // init HTTP server
-    var http = require('https').Server(options, app);
+    var http;
+    if (process.env.MONGODB_URI) {
+        http = require('http').Server(app);
+    } else {
+        http = require('https').Server(options, app);
+    }
+console.log("Mongo --");
+    console.log(process.env.MONGODB_URI);
+
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     require('./database/db.js');
@@ -43,43 +52,43 @@
     app.route('/api/reviews/:company')
         .get(function (req, res) {
             var query = { 'companyName': req.params.company };
-            console.log("Loading for"+ query.companyName)
+            console.log("Loading for" + query.companyName)
             Reviews.find(query, function (err, reviews) {
-                console.log("Load for"+ reviews.companyName)
+                console.log("Load for" + reviews.companyName)
                 if (err) {
                     res.status(500).send("error");
                 } else {
                     var strpro = [];
                     var strons = [];
-                    
+
                     for (var i = 0; i < reviews.length; i++) {
                         //console.log(reviews[i].pros.length,i);
-                        console.log("Load for"+ reviews[i].reviewId)
+                        console.log("Load for" + reviews[i].reviewId)
                         strpro = strpro.concat(reviews[i].pros.split(" "))
                         strons = strons.concat(reviews[i].cons.split(" "));
                     }
                     // 
-                  var extraction_resultPro =  strpro.filter(isIncluded)
-                    .reduce(function (map, word) {
-                        var word = word.toLowerCase();
-                        map[word] = (map[word] || 0) + 20;
-                        return map;
-                    }, Object.create(null));
+                    var extraction_resultPro = strpro.filter(isIncluded)
+                        .reduce(function (map, word) {
+                            var word = word.toLowerCase();
+                            map[word] = (map[word] || 0) + 20;
+                            return map;
+                        }, Object.create(null));
                     // var extraction_resultCon = keyword_extractor.extract(strons, {
                     //     language: "english",
                     //     remove_digits: true,
                     //     return_changed_case: true,
                     //     remove_duplicates: false
                     // })
-                 var extraction_resultCon = strons.filter(isIncluded)
-                    .reduce(function (map, word) {
-                        var word = word.toLowerCase();
-                        map[word] = (map[word] || 0) + 20;
-                        return map;
-                    }, Object.create(null));
+                    var extraction_resultCon = strons.filter(isIncluded)
+                        .reduce(function (map, word) {
+                            var word = word.toLowerCase();
+                            map[word] = (map[word] || 0) + 20;
+                            return map;
+                        }, Object.create(null));
 
-                var extraction_resultProArr =   Object.keys(extraction_resultPro).map(function (key) { return { text: key, size:extraction_resultPro[key] } });
-                var extraction_resultConArr =   Object.keys(extraction_resultCon).map(function (key) { return { text: key, size:extraction_resultCon[key] } });
+                    var extraction_resultProArr = Object.keys(extraction_resultPro).map(function (key) { return { text: key, size: extraction_resultPro[key] } });
+                    var extraction_resultConArr = Object.keys(extraction_resultCon).map(function (key) { return { text: key, size: extraction_resultCon[key] } });
 
                     // var extraction_resultPro = extraction_resultPro
                     //     .map(function (d) {
@@ -99,9 +108,9 @@
         })
 
 
-function isIncluded(value) {
-  return toIncludeWord.indexOf(value.toLowerCase())>=0;
-}
+    function isIncluded(value) {
+        return toIncludeWord.indexOf(value.toLowerCase()) >= 0;
+    }
     //                                                            var Canvas = require("canvas");
 
     // var cloud = require("d3-cloud");
@@ -138,7 +147,7 @@ function isIncluded(value) {
 
     // functions
     function saveData(reviews, res) {
-        var _company = { name: reviews.companyName , currentRating :reviews.currentRating  };
+        var _company = { name: reviews.companyName, currentRating: reviews.currentRating };
         var query = { 'name': _company.name };
         Company.findOneAndUpdate(query, _company, { upsert: true }, function (err, doc) {
             if (err) return res.send(500, { error: err });
