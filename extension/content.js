@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    var api = "https://localhost:8080/extension";
+    var api = "https://gdextn.herokuapp.com/extension";
     chrome.runtime.onMessage.addListener(
         function (request, sender, sendResponse) {
             if (request.msg === "readPageData") {
