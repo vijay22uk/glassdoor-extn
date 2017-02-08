@@ -5,7 +5,7 @@
         var ele = $(this).closest(".panel-row");
         var name = ele.find(".selectme").val();
         var sd = ele.find("input.startdate").val();
-        var ed = ele.find("input.startdate").val();
+        var ed = ele.find("input.enddate").val();
         if (sd == "" || ed == "") {
             alert("Please select valid dates");
             return;
