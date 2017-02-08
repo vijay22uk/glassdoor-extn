@@ -13,8 +13,6 @@
     var text = fs.readFileSync("./server/wordstokeep.txt", "utf-8");
     //var toIncludeWord = text.split("\r\n");
     var toIncludeWord = text.split(/\r?\n/)
-console.log(JSON.stringify(toIncludeWord));
-    console.log(toIncludeWord.indexOf("digital"))
     var app = express();
     // init HTTP server
     var http;
@@ -23,7 +21,7 @@ console.log(JSON.stringify(toIncludeWord));
     } else {
         http = require('https').Server(options, app);
     }
-console.log("Mongo --");
+    console.log("Mongo --");
     console.log(process.env.MONGODB_URI);
 
 
@@ -51,9 +49,12 @@ console.log("Mongo --");
             })
 
         });
-    app.route('/api/reviews/:company')
+    app.route('/api/reviews/:company/:sd/:ed')
         .get(function (req, res) {
-            var query = { 'companyName': req.params.company };
+            console.log(req.params.sd)
+            console.log("ssssssssssssssssssssssssssssssssssssssss")
+            console.log(req.params.ed)
+            var query = { 'companyName': req.params.company ,"time": {"$gte": new Date(req.params.sd), "$lt": new Date(req.params.ed)} };
             console.log("Loading for" + query.companyName)
             Reviews.find(query, function (err, reviews) {
                 console.log("Load for" + reviews.companyName)

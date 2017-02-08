@@ -4,7 +4,13 @@
     $(document).on('click', '.loadbtn', function () {
         var ele = $(this).closest(".panel-row");
         var name = ele.find(".selectme").val();
-        getReviews(name, function (data) {
+        var sd = ele.find("input.startdate").val();
+        var ed = ele.find("input.startdate").val();
+        if (sd == "" || ed == "") {
+            alert("Please select valid dates");
+            return;
+        }
+        getReviews(name, sd, ed, function (data) {
             ele.find(".reviews-pro").empty();
             ele.find(".reviews-con").empty();
             ele.find(".cloud").removeClass("hidden");
@@ -13,7 +19,7 @@
                 ele.find(".star-ratings-css").addClass("hidden");
             } else {
                 ele.find(".star-ratings-css").removeClass("hidden");
-                ele.find(".star-ratings-css-top").width((ratingPer / 5)*100 + "%");
+                ele.find(".star-ratings-css-top").width((ratingPer / 5) * 100 + "%");
             }
 
             generateCloud(data.pros, ele.find(".reviews-pro").attr("id"));
@@ -25,7 +31,7 @@
 
 
     function generateCloud(words, seletor) {
-             var words = words
+        var words = words
         //  .map(function(d) {
         //    return {text: d, size: 10 + Math.random() * 90};
         //  });
@@ -73,6 +79,10 @@
 
     function initUI() {
         getData();
+        var today = new Date();
+        $('.panel-row .input-group.date').datepicker({
+
+        });
     }
     function getData() {
         $.ajax({
@@ -86,9 +96,9 @@
             }
         });
     }
-    function getReviews(cm, callback) {
+    function getReviews(cm,sd,ed, callback) {
         $.ajax({
-            url: "/api/reviews/" + cm,
+            url: "/api/reviews/" + cm +"/"+ encodeURIComponent(sd) +"/"+encodeURIComponent(ed),
             method: "GET",
             success: function (data) {
                 callback(data);

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width" />
     <title>Chrome Ext. Server</title>
     <link href="/bootstrap.min.css" rel='stylesheet'></link>
+    <link href="/bootstrap-datepicker3.min.css" rel='stylesheet'></link>
     <script src="/jquery.js"></script>
     <script src="/bootstrap.min.js"></script>
+    <script src="/bootstrap-datepicker.min.js"></script>
     <script src="/d3.min.js"></script>
     <script src="/d3.layout.cloud.js"></script>
     <script src="/app.js"></script>
@@ -52,35 +54,39 @@
             font-size: 18px;
             font-weight: bold;
         }
+        
         .star-ratings-css {
-  unicode-bidi: bidi-override;
-  color: #c5c5c5;
-  font-size: 25px;
-  height: 25px;
-  width: 100px;
-  margin: 0 auto;
-  position: relative;
-  padding: 0;
-  text-shadow: 0px 1px 0 #a2a2a2;
-}
-.star-ratings-css-top {
-  color: #09ca57;
-  padding: 0;
-  position: absolute;
-  z-index: 1;
-  display: block;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
-.star-ratings-css-bottom {
-  padding: 0;
-  display: block;
-  z-index: 0;
-}
-.rating-here{
-    margin-bottom: 10px;
-}
+            unicode-bidi: bidi-override;
+            color: #c5c5c5;
+            font-size: 25px;
+            height: 25px;
+            width: 100px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0;
+            text-shadow: 0px 1px 0 #a2a2a2;
+        }
+        
+        .star-ratings-css-top {
+            color: #09ca57;
+            padding: 0;
+            position: absolute;
+            z-index: 1;
+            display: block;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+        
+        .star-ratings-css-bottom {
+            padding: 0;
+            display: block;
+            z-index: 0;
+        }
+        
+        .rating-here {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -90,10 +96,20 @@
         <div class="col-md-6 panel-row first">
             <select class="form-control selectme" id="company1"></select>
             <div class="">
-                <!--<label>Start Date</label>
-                <input type="date" id="startdate1" />
-                <label>End Date</label>
-                <input type="date" id="enddate1" />-->
+                <div class="container-fluid" style="padding-left:0px; margin-bottom:10px">
+                    <div class="col-md-6" style="padding-left:0px">
+                        <div class="input-group date">
+                            <input type="text" placeholder="Start Date" class="form-control startdate">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="padding-left:0px">
+                        <div class="input-group date">
+                            <input type="text" placeholder="End Date" class="form-control enddate">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        </div>
+                    </div>
+                </div>
                 <button class="btn btn-primary loadbtn" type="button" data-on="1">Load</button>
                 <div class="container-fluid rating-here">
                     <div class="star-ratings-css hidden">
@@ -112,10 +128,20 @@
         <div class="col-md-6 panel-row">
             <select class="form-control selectme" id="company2"></select>
             <div class="">
-                <!--<label>Start Date</label>
-                <input type="date" id="startdate2" />
-                <label>End Date</label>
-                <input type="date" id="enddate2" />-->
+                <div class="container-fluid" style="padding-left:0px; margin-bottom:10px">
+                    <div class="col-md-6" style="padding-left:0px">
+                    <div class="input-group date ">
+                        <input type="text" placeholder="Start Date" class="form-control startdate">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                    </div>
+                    <div class="col-md-6" style="padding-left:0px">
+                    <div class="input-group date ">
+                        <input type="text" placeholder="End Date" class="form-control enddate">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+        </div>
+                </div>
                 <button class="btn btn-primary loadbtn" data-on="2" type="button">Load</button>
                 <div class="container-fluid rating-here">
                     <div class="star-ratings-css hidden">
