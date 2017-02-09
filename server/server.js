@@ -54,12 +54,7 @@
             console.log(req.params.sd)
             console.log("ssssssssssssssssssssssssssssssssssssssss")
             console.log(req.params.ed)
-            var query = { 'companyName': req.params.company ,
-    "time": {
-        "$gte": new Date(req.params.sd).toISOString() ,
-        "$lt":new Date(req.params.ed).toISOString()
-    }
- };
+            var query = { 'companyName': req.params.company ,"time": {"$gte": new Date(req.params.sd).toISOString(), "$lt": new Date(req.params.ed).toISOString()} };
             console.log("Loading for" + query.companyName)
             Reviews.find(query, function (err, reviews) {
                 console.log("Load for" + reviews.companyName)
