@@ -16,6 +16,9 @@
 
 <h3>The Screens</h3>
 ![alt tag](https://raw.githubusercontent.com/vijay22uk/glassdoor-extn/master/screens/logo.png)
+
 ![alt tag](https://raw.githubusercontent.com/vijay22uk/glassdoor-extn/master/screens/expand.png)
+
 ![alt tag](https://raw.githubusercontent.com/vijay22uk/glassdoor-extn/master/screens/explorer.png)
+
 ![alt tag](https://raw.githubusercontent.com/vijay22uk/glassdoor-extn/master/screens/compare.png)
