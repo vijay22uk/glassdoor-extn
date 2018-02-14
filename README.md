@@ -15,6 +15,7 @@
 ## The server show listing of fetched reviews at https://gdextn.herokuapp.com/ or https://localhost:8080/
 
 <h3>The Screens</h3>
+
 ![alt tag](https://raw.githubusercontent.com/vijay22uk/glassdoor-extn/master/screens/logo.png)
 
 ![alt tag](https://raw.githubusercontent.com/vijay22uk/glassdoor-extn/master/screens/expand.png)
